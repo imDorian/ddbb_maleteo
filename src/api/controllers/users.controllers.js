@@ -1,7 +1,7 @@
-const User = require('../model/users.model');
+const User = require('../model/user.model');
 const bcrypt = require('bcrypt');
 const { validationPassword, validationEmail } = require('../../validators/validation');
-const {generateSign, verifyJwt} = require('../../jwt/jwt');
+const { generateSign, verifyJwt} = require('../../jwt/jwt');
 
 const register = async (req, res, next) => {
     try {
