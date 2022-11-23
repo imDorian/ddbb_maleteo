@@ -1,7 +1,8 @@
 const express = require('express');
 const {connect} = require('./src/utils/database')
 const usersRouter= require('./src/api/routes/users.routes')
-// const guardiansRouter= require('./src/api/routes/guardians.routes')
+const ubicationsRouter= require('./src/api/routes/ubications.routes')
+const guardiansRouter= require('./src/api/routes/guardians.routes')
 const {isAuth} = require('./src/middlewares/auth');
 //const provinciasRouter= require('./src/api/routes/pais.routes')
 const dotenv = require('dotenv');
@@ -15,4 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use('/guardians', guardiansRouter)
 app.use('/users', usersRouter)
+app.use('/ubications', ubicationsRouter)
+app.use('/guardians', guardiansRouter)
+
+
 app.listen(PORT,()=>console.log(`listening http://localhost:${PORT}`))
