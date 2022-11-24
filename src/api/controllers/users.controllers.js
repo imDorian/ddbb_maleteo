@@ -4,6 +4,7 @@ const { validationPassword, validationEmail } = require('../../validators/valida
 const { generateSign, verifyJwt} = require('../../jwt/jwt');
 
 const register = async (req, res, next) => {
+    console.log(req.body)
     try {
         const newUser = new User(req.body);
         if(!validationEmail(req.body.email)){

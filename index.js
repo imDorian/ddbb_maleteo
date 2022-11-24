@@ -5,6 +5,7 @@ const ubicationsRouter= require('./src/api/routes/ubications.routes')
 const guardiansRouter= require('./src/api/routes/guardians.routes')
 const reservationsRouter= require('./src/api/routes/reservations.routes')
 const {isAuth} = require('./src/middlewares/auth');
+const cors = require("cors");
 //const provinciasRouter= require('./src/api/routes/pais.routes')
 const dotenv = require('dotenv');
 const app = express()
@@ -13,6 +14,7 @@ dotenv.config();
 const PORT = process.env.PORT || 8000;
 
 connect();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use('/guardians', guardiansRouter)
