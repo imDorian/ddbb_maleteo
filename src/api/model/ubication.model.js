@@ -10,6 +10,7 @@ const UbicationSchema = new Schema({
     name: {type: String, required: true},
     disponibility: {type: String},
     description: {type: String, required: true},
+    guardianID:{type: Schema.Types.ObjectId, ref:"guardian"},
     
 },{
     timestamps: true

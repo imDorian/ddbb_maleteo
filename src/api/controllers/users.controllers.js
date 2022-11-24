@@ -59,7 +59,7 @@ const logout = (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
     try {
-        const allUsers = await User.find()
+        const allUsers = await User.find().populate('guardianID');
         return res.status(200).json(allUsers)
     } catch (error) {
         return res.status(500).json(error)
