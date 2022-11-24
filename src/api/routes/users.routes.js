@@ -7,7 +7,7 @@ router.post('/register', register)
 router.post('/login', login)
 router.post('/logout',[isAuth], logout)
 router.delete('/removeusers',[isAuth] ,deleteAllUsers)
-router.get('/', getAllUsers)
+router.get('/getall', getAllUsers)
 router.delete('/deleteuser/:id',[isAuth], deleteUser)
 
 module.exports = router;

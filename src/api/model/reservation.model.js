@@ -6,17 +6,19 @@ const Schema = mongoose.Schema;
 const ReservationSchema = new Schema({
 
 
-    userID:{type: Schema.Types.ObjectId, ref:"user"},
-    guardianID:{type: Schema.Types.ObjectId, ref:"guardian"},
-    ubicationID: {type: Schema.Types.ObjectId, ref:"ubication"},
-    inDate:{type: String, required: true},
-    outDate:{type: String, required: true},
+    userID:{type: Schema.Types.ObjectId, ref:"User"},
+    guardianID:{type: Schema.Types.ObjectId, ref:"Guardian"},
+    ubicationID: {type: Schema.Types.ObjectId, ref:"Ubication"},
+    inDate:{type: Date, required: true},
+    outDate:{type: Date, required: true},
     baggageNumber:{type: Number, required: true},
     price:{type: Number, required: true},
-    pending: {type: Boolean, required: true},
+    isConfirmed: {type: Boolean, default:false, required: true},
     
     
-});
+},{
+    timestamps: true
+    });
 
 
 const Reservation = mongoose.model('Reservation', ReservationSchema);

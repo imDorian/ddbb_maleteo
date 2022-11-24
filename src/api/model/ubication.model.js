@@ -11,7 +11,9 @@ const UbicationSchema = new Schema({
     disponibility: {type: String},
     description: {type: String, required: true},
     
-});
+},{
+    timestamps: true
+    });
 
 
 const Ubication = mongoose.model('Ubication', UbicationSchema);

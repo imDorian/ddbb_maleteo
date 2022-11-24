@@ -4,14 +4,10 @@ const Schema = mongoose.Schema;
 // const { validationPassword, validationEmail } = require('../../validators/validation');
 
 const GuardianSchema = new Schema({
-    ubicationsID:[{type: Schema.Types.ObjectId, ref: "ubication"}],
-    userID:{type: Schema.Types.ObjectId, ref:"user"}
+    ubicationsID:[{type: Schema.Types.ObjectId, ref: "Ubication"}],
+    userID:{type: Schema.Types.ObjectId, ref:"User"}},
+    {timestamps: true
 
-
-    // nameGuardian: {type: String, required: true}},
-
-    //puede dejar y recoger maletas
-    
 });
 
 

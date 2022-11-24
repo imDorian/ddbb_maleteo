@@ -11,7 +11,9 @@ const UserSchema = new Schema({
     image: {type: String},
     guardianID:{type: Schema.Types.ObjectId, ref:"guardian"},
     
-});
+},{
+    timestamps: true
+    });
 
 
 const User = mongoose.model('User', UserSchema);
