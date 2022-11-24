@@ -8,6 +8,7 @@ const UserSchema = new Schema({
     password: {type: String, required: true},
     name: {type: String, required: true},
     surname: {type: String, required: true},
+    birthdate:{type: Date, required: true},
     image: {type: String},
     guardianID:{type: Schema.Types.ObjectId, ref:"guardian"},
     
