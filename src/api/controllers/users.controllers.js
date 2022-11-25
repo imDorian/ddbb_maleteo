@@ -51,7 +51,7 @@ const login = async (req, res, next) => {
 
 const logout = (req, res, next) => {
     try {
-        return res.status(200).json({token: null})//????de donde se recoge token???
+        return res.status(200).json({token: null})
     } catch (error) {
         return res.status(500).json(error) ;
     }
@@ -59,8 +59,20 @@ const logout = (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
     try {
-        const allUsers = await User.find().populate('guardianID');
+        const allUsers = await User.find();
         return res.status(200).json(allUsers)
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+}
+
+const putUser = async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        const user = new User(req.body)
+        user._id = id;
+        const newUser = await User.findByIdAndUpdate(id, user, {new:true})
+        return res.status(201).json(newUser)
     } catch (error) {
         return res.status(500).json(error)
     }
@@ -87,4 +99,4 @@ const deleteAllUsers = async (req, res, next) => {
 
 
 
-module.exports = {register, login, logout, getAllUsers, deleteUser, deleteAllUsers}
+module.exports = {register, login, logout, getAllUsers, putUser, deleteUser, deleteAllUsers}

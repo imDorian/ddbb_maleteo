@@ -5,7 +5,7 @@ const { generateSign, verifyJwt} = require('../../jwt/jwt');
 
 const getAllUbications = async (req, res, next) => {
     try {
-        const allUbication = await Ubication.find().populate('guardianID');
+        const allUbication = await Ubication.find();
         return res.status(200).json(allUbication)
     } catch (error) {
         return res.status(500).json(error)
@@ -15,7 +15,7 @@ const getAllUbications = async (req, res, next) => {
 const getUbication = async (req, res) => {
     try {
         const {id} = req.params;
-        const oneUbication = await Ubication.findById(id).populate('guardianID');;
+        const oneUbication = await Ubication.findById(id);
         return res.status(200).json(oneUbication)
     } catch (error) {
         return res.status(500).json(error);

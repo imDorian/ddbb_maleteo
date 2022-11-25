@@ -50,7 +50,7 @@ const putReservation = async (req, res, next) => {
         const {id} = req.params;
         const reservation = new Reservation(req.body)
         reservation._id = id;
-        const newReservation = await Reservation.findByIdAndUpdate(id,reservation, {new:true})
+        const newReservation = await Reservation.findByIdAndUpdate(id, reservation, {new:true})
         return res.status(201).json(newReservation)
     } catch (error) {
         return res.status(500).json(error)

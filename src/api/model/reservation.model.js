@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 
 const ReservationSchema = new Schema({
 
-
     userID:{type: Schema.Types.ObjectId, ref:"User"},
     guardianID:{type: Schema.Types.ObjectId, ref:"Guardian"},
     ubicationID: {type: Schema.Types.ObjectId, ref:"Ubication"},
@@ -14,7 +13,6 @@ const ReservationSchema = new Schema({
     baggageNumber:{type: Number, required: true},
     price:{type: Number, required: true},
     isConfirmed: {type: Boolean, default:false, required: true},
-    
     
 },{
     timestamps: true
