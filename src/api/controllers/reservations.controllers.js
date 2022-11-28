@@ -5,7 +5,7 @@ const { generateSign, verifyJwt} = require('../../jwt/jwt');
 
 const getAllReservations = async (req, res, next) => {
     try {
-        const allReservation = await Reservation.find().populate('userID').populate('guardianID').populate('ubicationID')
+        const allReservation = await Reservation.find().populate('userID').populate('guardianID').populate('ubicationID');
         return res.status(200).json(allReservation)
     } catch (error) {
         return res.status(500).json(error)
@@ -15,7 +15,7 @@ const getAllReservations = async (req, res, next) => {
 const getReservation = async (req, res) => {
     try {
         const {id} = req.params;
-        const oneReservation = await Reservation.findById(id);
+        const oneReservation = await Reservation.findById(id).populate('userID').populate('guardianID').populate('ubicationID');
         return res.status(200).json(oneReservation)
     } catch (error) {
         return res.status(500).json(error);
@@ -50,7 +50,7 @@ const putReservation = async (req, res, next) => {
         const {id} = req.params;
         const reservation = new Reservation(req.body)
         reservation._id = id;
-        const newReservation = await Reservation.findByIdAndUpdate(id,reservation, {new:true})
+        const newReservation = await Reservation.findByIdAndUpdate(id, reservation, {new:true})
         return res.status(201).json(newReservation)
     } catch (error) {
         return res.status(500).json(error)

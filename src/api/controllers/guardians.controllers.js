@@ -5,7 +5,7 @@ const { generateSign, verifyJwt} = require('../../jwt/jwt');
 
 const getAllGuardians = async (req, res, next) => {
     try {
-        const allGuardian = await Guardian.find().populate('userID').populate('ubicationsID')
+        const allGuardian = await Guardian.find().populate('userID').populate('ubicationsID');
         return res.status(200).json(allGuardian)
     } catch (error) {
         return res.status(500).json(error)
@@ -15,7 +15,7 @@ const getAllGuardians = async (req, res, next) => {
 const getGuardian = async (req, res) => {
     try {
         const {id} = req.params;
-        const oneGuardian = await Guardian.findById(id);
+        const oneGuardian = await Guardian.findById(id).populate('userID').populate('ubicationsID');
         return res.status(200).json(oneGuardian)
     } catch (error) {
         return res.status(500).json(error);

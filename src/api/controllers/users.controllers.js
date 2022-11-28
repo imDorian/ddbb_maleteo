@@ -4,6 +4,7 @@ const { validationPassword, validationEmail } = require('../../validators/valida
 const { generateSign, verifyJwt} = require('../../jwt/jwt');
 
 const register = async (req, res, next) => {
+    console.log(req.body)
     try {
         const newUser = new User(req.body);
         if(!validationEmail(req.body.email)){
@@ -35,7 +36,7 @@ const login = async (req, res, next) => {
             // userInfo.password = null;
             // console.log(userInfo)
             const token = generateSign(userInfo._id, userInfo.email)
-            return res.status(200).json(token);
+            return res.status(200).json({token: token, user: userInfo});
         }else{
             return res.status(400).json({message: "invalid password"});
         }
@@ -50,7 +51,7 @@ const login = async (req, res, next) => {
 
 const logout = (req, res, next) => {
     try {
-        return res.status(200).json({token: null})//????de donde se recoge token???
+        return res.status(200).json({token: null})
     } catch (error) {
         return res.status(500).json(error) ;
     }
@@ -58,8 +59,20 @@ const logout = (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
     try {
-        const allUsers = await User.find()
+        const allUsers = await User.find();
         return res.status(200).json(allUsers)
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+}
+
+const putUser = async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        const user = new User(req.body)
+        user._id = id;
+        const newUser = await User.findByIdAndUpdate(id, user, {new:true})
+        return res.status(201).json(newUser)
     } catch (error) {
         return res.status(500).json(error)
     }
@@ -86,4 +99,4 @@ const deleteAllUsers = async (req, res, next) => {
 
 
 
-module.exports = {register, login, logout, getAllUsers, deleteUser, deleteAllUsers}
+module.exports = {register, login, logout, getAllUsers, putUser, deleteUser, deleteAllUsers}

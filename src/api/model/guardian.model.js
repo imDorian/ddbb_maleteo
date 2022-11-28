@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 // const { validationPassword, validationEmail } = require('../../validators/validation');
 
 const GuardianSchema = new Schema({
-    ubicationsID:[{type: Schema.Types.ObjectId, ref: "Ubication"}],
+    
+    ubicationsID:[{type: Schema.Types.ObjectId, ref: "Ubication", required: false}],
     userID:{type: Schema.Types.ObjectId, ref:"User"}},
     {timestamps: true
 
