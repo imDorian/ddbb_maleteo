@@ -25,7 +25,7 @@ const getUbication = async (req, res) => {
 const deleteUbication = async (req, res, next) => {
     try {
         const {id} = req.params;
-        const user = await User.findByIdAndDelete(id);
+        const user = await Ubication.findByIdAndDelete(id);
         return res.status(200).json("Ubication deleted")
     } catch (error) {
         return res.status(500).json(error)

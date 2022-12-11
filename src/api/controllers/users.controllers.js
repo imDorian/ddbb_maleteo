@@ -66,6 +66,16 @@ const getAllUsers = async (req, res, next) => {
     }
 }
 
+const getUser = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const oneUser = await User.findById(id).populate({path:'reservations', populate:{path:'guardianID', populate:{path:'userID'}}}).populate({path:'reservations', populate:{path:'userID'}});
+        return res.status(200).json(oneUser)
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+};
+
 const putUser = async (req, res, next) => {
     try {
         const {id} = req.params;
@@ -99,4 +109,4 @@ const deleteAllUsers = async (req, res, next) => {
 
 
 
-module.exports = {register, login, logout, getAllUsers, putUser, deleteUser, deleteAllUsers}
+module.exports = {register, login, logout, getAllUsers, getUser, putUser, deleteUser, deleteAllUsers}

@@ -12,10 +12,11 @@ const ReservationSchema = new Schema({
     outDate:{type: Date, required: true},
     baggageNumber:{type: Number, required: true},
     price:{type: Number, required: true},
-    isConfirmed: {type: Boolean, default:false, required: true}
-    
+    isConfirmed: {type: Boolean, default:false, required: true},
+    messages: [{type: Schema.Types.ObjectId, ref:"Chat"}]
+
 },{
-    timestamps: true
+    timestamps: true 
     });
 
 
