@@ -5,12 +5,12 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     
-    email: {type: String, required: true},
-    password: {type: String, required: true},
-    name: {type: String, required: true},
-    surname: {type: String, required: true},
-    birthdate:{type: Date, required: false},
-    image: {type: String, required: false},
+    email: {type: String},
+    password: {type: String},
+    name: {type: String},
+    surname: {type: String},
+    birthdate:{type: Date},
+    image: {type: String},
     reservations: [{type: Schema.Types.ObjectId, ref:"Reservation"}]
     
 },{
